@@ -1,0 +1,25 @@
+#include <random>
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+int main() {
+	int tries = 0;
+	vector<int> nums = { 5, 4, 3, 2, 1 };
+
+	while(!is_sorted(begin(nums), end(nums))) {
+		//Implementation for bogo sort
+		static std::mt19937 engine{ std::random_device{}() }; //random number generator
+		shuffle(nums.begin(), nums.end(), engine);
+		tries++;
+		cout << "Try " << tries << ": ";
+		for (auto i : nums) {
+			cout << i << " " ;
+		}
+		cout << endl;
+
+	}
+	cout << "Sorted after " << tries;
+}
